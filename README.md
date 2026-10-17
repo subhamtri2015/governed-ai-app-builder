@@ -16,7 +16,7 @@
 ## Repository Structure & Quick Links
 
 ```
-ai-app-builder-assistant/
+governed-ai-app-builder/
 ├── README.md                      # Executive Case Study Summary (This Document)
 ├── data-sources.md                # Public Dataset Info & Ingestion Guide
 ├── 01-research/                   # Discovery Script, Findings Template & Competitor Analysis
