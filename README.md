@@ -43,13 +43,6 @@
 
 ---
 
-### 🧱 Design System — Tokens & Component Library
-*Visual specifications: 24-color token palette, typography scale, spacing system, and 7 core components.*
-
-[![Design System](09-design/figma_design_system.svg)](09-design/figma_design_system.svg)
-
----
-
 ## Portfolio & Disclaimer Notice
 
 - **Nature of Project:** This is a **self-initiated, original portfolio case study** designed to demonstrate core Associate Product Manager (APM) competencies: writing functional specifications, prioritizing using data and frameworks, designing API contracts, defining metrics and event schemas, planning engineering delivery, and crafting go-to-market enablement.
