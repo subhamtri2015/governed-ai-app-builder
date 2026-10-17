@@ -2,6 +2,11 @@
 
 This folder contains **high-fidelity interface designs**, a visual design system, and interaction flow specs for the **AI Draft-and-Review Assistant** — built for a 1440 × 900 px desktop viewport.
 
+[![Open in Figma Make](https://img.shields.io/badge/Figma%20Make-Open%20Live%20Prototype-blue?logo=figma&logoColor=white&style=for-the-badge)](https://www.figma.com/make/20xGXlAVZZF6kOwam3TNga/Figma-Workflow-Guide?t=ANlP7mWkkc6gwPp9-20&fullscreen=1)
+
+> 🔗 **Interactive Application:** [Launch Figma Make Prototype](https://www.figma.com/make/20xGXlAVZZF6kOwam3TNga/Figma-Workflow-Guide?t=ANlP7mWkkc6gwPp9-20&fullscreen=1) *(Figma account required)*  
+> Includes high-fidelity SVGs as well as original export PNGs (`.png` / `.svg`).
+
 ---
 
 ## Interaction Principles

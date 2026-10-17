@@ -2,6 +2,52 @@
 
 > **One-Line Summary:** An AI assistant that turns a plain-language request into a reviewable draft of an internal tool (queries, tables, forms) inside a low-code platform, where a human accepts or rejects each part before anything goes live.
 
+<p align="left">
+  <a href="https://www.figma.com/make/20xGXlAVZZF6kOwam3TNga/Figma-Workflow-Guide?t=ANlP7mWkkc6gwPp9-20&fullscreen=1">
+    <img src="https://img.shields.io/badge/Figma%20Make-Open%20Live%20Prototype-blue?logo=figma&logoColor=white&style=for-the-badge" alt="Open in Figma Make" />
+  </a>
+  <a href="09-design/README.md">
+    <img src="https://img.shields.io/badge/UI%2FUX-High--Fidelity%20Design%20System-purple?style=for-the-badge" alt="Design Specs" />
+  </a>
+  <a href="prototype/validate_draft.py">
+    <img src="https://img.shields.io/badge/Prototype-Validation%20Engine-success?style=for-the-badge" alt="Python Prototype" />
+  </a>
+</p>
+
+---
+
+## 🎨 Interactive Prototype & Core UI Screen Walkthrough
+
+> 🔗 **Live Figma Make Application:** [Open Live Interactive App](https://www.figma.com/make/20xGXlAVZZF6kOwam3TNga/Figma-Workflow-Guide?t=ANlP7mWkkc6gwPp9-20&fullscreen=1)  
+> *(Figma account required to interact with live canvas. Click any screen below to open the interactive Figma prototype)*  
+> 📁 **Full Design Specifications & Token Library:** [`09-design/README.md`](09-design/README.md)
+
+### Screen 1 — Prompt & Schema-Matched Starter Pills
+*The builder selects a connected data source (`PostgreSQL warehouse_production`) and enters an outcome-driven prompt or selects a starter prompt pill to bypass blank-canvas paralysis.*
+
+[![Screen 1: Prompt Starter](09-design/screen_1_prompt_starter.svg)](https://www.figma.com/make/20xGXlAVZZF6kOwam3TNga/Figma-Workflow-Guide?t=ANlP7mWkkc6gwPp9-20&fullscreen=1)
+
+---
+
+### Screen 2 — Granular Diff Preview & RBAC Permission Exclusion
+*AI draft is decomposed into modular components (queries, tables). Unauthorized tables (`customers`) are pruned upstream with an explicit amber RBAC exclusion banner. The human reviews, accepts, or rejects individual parts before staging.*
+
+[![Screen 2: Diff Preview](09-design/screen_2_diff_preview.svg)](https://www.figma.com/make/20xGXlAVZZF6kOwam3TNga/Figma-Workflow-Guide?t=ANlP7mWkkc6gwPp9-20&fullscreen=1)
+
+---
+
+### Screen 3 — Safe Canvas Isolation & Governed Publish
+*Accepted parts are rendered in a safe sandbox canvas behind an overlay. Clicking "Publish changes to production" triggers a release summary with audit trail recording before committing live.*
+
+[![Screen 3: Publish Confirmation](09-design/screen_3_publish_confirmation.svg)](https://www.figma.com/make/20xGXlAVZZF6kOwam3TNga/Figma-Workflow-Guide?t=ANlP7mWkkc6gwPp9-20&fullscreen=1)
+
+---
+
+### 🧱 Design System — Tokens & Component Library
+*Visual specifications: 24-color token palette, typography scale, spacing system, and 7 core components.*
+
+[![Design System](09-design/figma_design_system.svg)](09-design/figma_design_system.svg)
+
 ---
 
 ## Portfolio & Disclaimer Notice
@@ -51,11 +97,12 @@ governed-ai-app-builder/
 │   ├── test_plan.md
 │   ├── uat_checklist.md
 │   └── gtm_plan.md
-├── 09-design/                     # Screen Wireframes & UI Specifications
+├── 09-design/                     # High-Fidelity Screens, Design System & Figma App
 │   ├── README.md
-│   ├── screen_1_prompt_starter.svg
-│   ├── screen_2_diff_preview.svg
-│   └── screen_3_publish_confirmation.svg
+│   ├── figma_design_system.svg        # Visual tokens & component library
+│   ├── screen_1_prompt_starter.svg / .png
+│   ├── screen_2_diff_preview.svg / .png
+│   └── screen_3_publish_confirmation.svg / .png
 └── prototype/                     # Working Python Prototype & Test Suite
     ├── validate_draft.py
     └── test_validate_draft.py
@@ -250,10 +297,14 @@ See [`07-delivery/epics_and_backlog.md`](file:///Users/subham/Desktop/IA-GET/07-
 
 ## 10. Design & Visual Specifications
 
-Three core interface designs documented in [`09-design/README.md`](file:///Users/subham/Desktop/IA-GET/09-design/README.md):
-1. **Prompt Screen with Starter Prompts:** [`screen_1_prompt_starter.svg`](file:///Users/subham/Desktop/IA-GET/09-design/screen_1_prompt_starter.svg)
-2. **Diff Preview with Per-Part Checkboxes & Exclusions:** [`screen_2_diff_preview.svg`](file:///Users/subham/Desktop/IA-GET/09-design/screen_2_diff_preview.svg)
-3. **Publish Confirmation & Audit Summary:** [`screen_3_publish_confirmation.svg`](file:///Users/subham/Desktop/IA-GET/09-design/screen_3_publish_confirmation.svg)
+> 🎨 **Interactive Showcase:** The full visual screen walkthrough and Figma Make app link are featured at the [top of this README](#-interactive-prototype--core-ui-screen-walkthrough).
+
+Detailed interaction flow specifications, state machines, edge case behaviors, and design token documentation are provided in [`09-design/README.md`](09-design/README.md):
+- **Screen 1 Specifications:** [`09-design/screen_1_prompt_starter.svg`](09-design/screen_1_prompt_starter.svg) ([PNG](09-design/screen_1_prompt_starter.png))
+- **Screen 2 Specifications:** [`09-design/screen_2_diff_preview.svg`](09-design/screen_2_diff_preview.svg) ([PNG](09-design/screen_2_diff_preview.png))
+- **Screen 3 Specifications:** [`09-design/screen_3_publish_confirmation.svg`](09-design/screen_3_publish_confirmation.svg) ([PNG](09-design/screen_3_publish_confirmation.png))
+- **Visual Design System:** [`09-design/figma_design_system.svg`](09-design/figma_design_system.svg)
+- **Live Figma Prototype:** [Figma Make App](https://www.figma.com/make/20xGXlAVZZF6kOwam3TNga/Figma-Workflow-Guide?t=ANlP7mWkkc6gwPp9-20&fullscreen=1)
 
 ---
 
