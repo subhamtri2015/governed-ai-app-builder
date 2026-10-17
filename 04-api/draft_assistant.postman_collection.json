@@ -1,0 +1,289 @@
+{
+  "info": {
+    "_postman_id": "7b89d41e-365d-4f19-b788-cb941e17d294",
+    "name": "AI Draft-and-Review Assistant API",
+    "description": "Postman Collection for generating, previewing, selectively applying, and logging internal tool drafts.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.internal-builder.io/v1",
+      "type": "string"
+    },
+    {
+      "key": "draftId",
+      "value": "dr_456",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Draft Lifecycle Workflows",
+      "item": [
+        {
+          "name": "1. Request AI Draft Generation",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"returns 202 and a draft id\", function () {",
+                  "    pm.response.to.have.status(202);",
+                  "    pm.expect(pm.response.json()).to.have.property(\"draft_id\");",
+                  "});",
+                  "",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.draft_id) {",
+                  "    pm.collectionVariables.set(\"draftId\", jsonData.draft_id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"prompt\": \"Build an approvals dashboard from orders\",\n  \"datasource_id\": \"ds_123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/ai/app-drafts",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "ai", "app-drafts"]
+            }
+          },
+          "response": [
+            {
+              "name": "202 Accepted",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"prompt\": \"Build an approvals dashboard from orders\",\n  \"datasource_id\": \"ds_123\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ai/app-drafts",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v1", "ai", "app-drafts"]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"draft_id\": \"dr_456\",\n  \"status\": \"pending\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "2. Get Draft Preview & Exclusions",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response contains parts and exclusions array\", function () {",
+                  "    var json = pm.response.json();",
+                  "    pm.expect(json).to.have.property(\"parts\");",
+                  "    pm.expect(json).to.have.property(\"excluded\");",
+                  "    pm.expect(json.parts).to.be.an(\"array\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v1/ai/app-drafts/{{draftId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "ai", "app-drafts", "{{draftId}}"]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK - Preview Ready",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ai/app-drafts/{{draftId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v1", "ai", "app-drafts", "{{draftId}}"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"draft_id\": \"dr_456\",\n  \"status\": \"ready\",\n  \"parts\": [\n    {\n      \"part_id\": \"q1\",\n      \"type\": \"query\",\n      \"summary\": \"Orders pending approval\",\n      \"table\": \"orders\"\n    },\n    {\n      \"part_id\": \"c1\",\n      \"type\": \"table\",\n      \"summary\": \"Orders table with status filter\"\n    }\n  ],\n  \"excluded\": [\n    {\n      \"table\": \"customers\",\n      \"reason\": \"no_access\"\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "3. Apply Accepted Parts",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Applied parts match expected count\", function () {",
+                  "    var json = pm.response.json();",
+                  "    pm.expect(json).to.have.property(\"app_version_id\");",
+                  "    pm.expect(json.applied).to.eql(2);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accepted_part_ids\": [\"q1\", \"c1\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/ai/app-drafts/{{draftId}}/apply",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "ai", "app-drafts", "{{draftId}}", "apply"]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK - Applied to Draft Version",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accepted_part_ids\": [\"q1\", \"c1\"]\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ai/app-drafts/{{draftId}}/apply",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v1", "ai", "app-drafts", "{{draftId}}", "apply"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"app_version_id\": \"av_789\",\n  \"applied\": 2,\n  \"rejected\": 0\n}"
+            }
+          ]
+        },
+        {
+          "name": "4. Log Telemetry Event",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 204 No Content\", function () {",
+                  "    pm.response.to.have.status(204);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event_type\": \"draft_reviewed\",\n  \"parts_proposed\": 4,\n  \"parts_accepted\": 3\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/ai/app-drafts/{{draftId}}/events",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "ai", "app-drafts", "{{draftId}}", "events"]
+            }
+          },
+          "response": [
+            {
+              "name": "204 No Content - Event Logged",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"event_type\": \"draft_reviewed\",\n  \"parts_proposed\": 4,\n  \"parts_accepted\": 3\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ai/app-drafts/{{draftId}}/events",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v1", "ai", "app-drafts", "{{draftId}}", "events"]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "body": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

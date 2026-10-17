@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" style="background:#0F172A; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="primaryBtn" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+    <filter id="shadowBox" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- App Header -->
+  <rect x="0" y="0" width="1200" height="64" fill="#1E293B"/>
+  <line x1="0" y1="64" x2="1200" y2="64" stroke="#334155" stroke-width="1"/>
+  <circle cx="36" cy="32" r="14" fill="#3B82F6"/>
+  <text x="31" y="37" fill="#FFFFFF" font-size="14" font-weight="bold">AI</text>
+  <text x="62" y="38" fill="#F8FAFC" font-size="16" font-weight="600">InternalBuilder Studio</text>
+  <rect x="1050" y="18" width="110" height="28" rx="6" fill="#334155"/>
+  <text x="1066" y="36" fill="#E2E8F0" font-size="12">Role: ops_analyst</text>
+
+  <!-- Modal Container -->
+  <g filter="url(#shadowBox)">
+    <rect x="140" y="90" width="920" height="640" rx="16" fill="#1E293B" stroke="#475569" stroke-width="1.5"/>
+
+    <!-- Header -->
+    <rect x="140" y="90" width="920" height="60" rx="16" fill="#0F172A"/>
+    <text x="172" y="126" fill="#F8FAFC" font-size="17" font-weight="600">Draft Diff Preview — Review & Select Parts</text>
+    <rect x="580" y="112" width="120" height="22" rx="4" fill="#3B82F6" opacity="0.2"/>
+    <text x="590" y="127" fill="#60A5FA" font-size="11" font-weight="600">3 Proposed Parts</text>
+    <text x="1025" y="126" fill="#94A3B8" font-size="18">✕</text>
+    <line x1="140" y1="150" x2="1060" y2="150" stroke="#334155" stroke-width="1"/>
+
+    <!-- Exclusions Notice Banner (Orange/Amber) -->
+    <rect x="172" y="165" width="856" height="42" rx="8" fill="#451A03" stroke="#D97706" stroke-width="1.2"/>
+    <text x="194" y="191" fill="#FDE68A" font-size="14" font-weight="bold">⚠️ Table Exclusion Notice:</text>
+    <text x="365" y="191" fill="#FEF3C7" font-size="13">Excluded 1 table (<code>customers</code>): Requires workspace admin permission. Only authorized tables were queried.</text>
+
+    <!-- Part 1: Query (Accepted) -->
+    <rect x="172" y="222" width="856" height="110" rx="10" fill="#0F172A" stroke="#22C55E" stroke-width="1.5"/>
+    <!-- Checkbox checked -->
+    <rect x="192" y="242" width="22" height="22" rx="6" fill="#22C55E"/>
+    <text x="197" y="258" fill="#FFFFFF" font-size="14" font-weight="bold">✓</text>
+    <text x="226" y="258" fill="#F8FAFC" font-size="15" font-weight="600">Part q1: SQL Query — "Orders Pending Delivery"</text>
+    <rect x="620" y="242" width="90" height="20" rx="4" fill="#166534"/>
+    <text x="632" y="256" fill="#86EFAC" font-size="11" font-weight="600">TABLE: orders</text>
+    <text x="226" y="284" fill="#94A3B8" font-size="13">Plain-Language Summary: Retrieves orders where order_status is 'shipped' or 'processing' with carrier timestamps.</text>
+    <rect x="226" y="294" width="780" height="26" rx="4" fill="#1E293B"/>
+    <text x="236" y="311" fill="#38BDF8" font-size="11" font-family="Courier, monospace">SELECT order_id, order_status, order_purchase_timestamp, order_estimated_delivery_date FROM orders WHERE order_status != 'delivered' LIMIT 100;</text>
+
+    <!-- Part 2: Table Component (Accepted) -->
+    <rect x="172" y="344" width="856" height="96" rx="10" fill="#0F172A" stroke="#22C55E" stroke-width="1.5"/>
+    <rect x="192" y="364" width="22" height="22" rx="6" fill="#22C55E"/>
+    <text x="197" y="380" fill="#FFFFFF" font-size="14" font-weight="bold">✓</text>
+    <text x="226" y="380" fill="#F8FAFC" font-size="15" font-weight="600">Part c1: Table Component — "Orders Live Operational Grid"</text>
+    <rect x="670" y="364" width="100" height="20" rx="4" fill="#1E3A8A"/>
+    <text x="682" y="378" fill="#93C5FD" font-size="11" font-weight="600">WIDGET: table</text>
+    <text x="226" y="406" fill="#94A3B8" font-size="13">Bound to Query q1. Columns displayed: order_id, order_status badge, purchase date, estimated delivery date.</text>
+    <text x="226" y="425" fill="#64748B" font-size="12">Features included: Column sort, search filter bar, and status coloring.</text>
+
+    <!-- Part 3: Secondary Component (Rejected / Unchecked) -->
+    <rect x="172" y="452" width="856" height="96" rx="10" fill="#0F172A" stroke="#475569" stroke-width="1"/>
+    <!-- Checkbox unchecked -->
+    <rect x="192" y="472" width="22" height="22" rx="6" fill="#1E293B" stroke="#64748B" stroke-width="1.5"/>
+    <text x="226" y="488" fill="#94A3B8" font-size="15" font-weight="600">Part c2: Metric Card — "Unassigned Carrier Counter"</text>
+    <rect x="620" y="472" width="110" height="20" rx="4" fill="#334155"/>
+    <text x="630" y="486" fill="#CBD5E1" font-size="11" font-weight="600">WIDGET: stats_card</text>
+    <text x="226" y="514" fill="#64748B" font-size="13">Displays count of unassigned shipments. (Unchecked: Builder opted to reject this widget to keep dashboard minimal).</text>
+    <text x="226" y="533" fill="#EF4444" font-size="12">✕ Status: Will be excluded on apply</text>
+
+    <!-- Bottom Actions -->
+    <line x1="140" y1="655" x2="1060" y2="655" stroke="#334155" stroke-width="1"/>
+    <text x="172" y="688" fill="#94A3B8" font-size="13">Selection: <tspan fill="#4ADE80" font-weight="bold">2 parts accepted</tspan>, <tspan fill="#EF4444">1 part rejected</tspan>. Commits to isolated Draft Version.</text>
+    
+    <rect x="730" y="670" width="110" height="38" rx="6" fill="#334155"/>
+    <text x="752" y="694" fill="#CBD5E1" font-size="13" font-weight="500">Cancel</text>
+
+    <rect x="856" y="670" width="172" height="38" rx="6" fill="url(#primaryBtn)"/>
+    <text x="874" y="694" fill="#FFFFFF" font-size="13" font-weight="600">Apply 2 Parts to Draft →</text>
+  </g>
+</svg>

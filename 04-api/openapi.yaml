@@ -1,0 +1,200 @@
+openapi: 3.0.3
+info:
+  title: AI Draft-and-Review Assistant API
+  description: Endpoints for generating, inspecting, applying, and logging AI-assisted internal tool drafts.
+  version: 1.0.0
+servers:
+  - url: https://api.internal-builder.io/v1
+    description: Production API Gateway
+  - url: https://mock.pstmn.io/v1
+    description: Postman Mock Server Environment
+
+paths:
+  /v1/ai/app-drafts:
+    post:
+      summary: Request AI Draft Generation
+      description: Submits a plain-language prompt and datasource ID to asynchronously generate a reviewable draft.
+      operationId: createDraft
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - prompt
+                - datasource_id
+              properties:
+                prompt:
+                  type: string
+                  example: "Build an approvals dashboard from orders"
+                datasource_id:
+                  type: string
+                  example: "ds_123"
+      responses:
+        '202':
+          description: Draft generation accepted and processing.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  draft_id:
+                    type: string
+                    example: "dr_456"
+                  status:
+                    type: string
+                    example: "pending"
+        '400':
+          description: Invalid request payload or prompt too short.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "prompt_too_short"
+        '403':
+          description: User lacks permissions for requested data source.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "datasource_not_permitted"
+
+  /v1/ai/app-drafts/{draft_id}:
+    get:
+      summary: Retrieve Draft Preview & Exclusions
+      description: Fetches proposed queries, UI components, and permission exclusions for review.
+      operationId: getDraftPreview
+      parameters:
+        - name: draft_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: "dr_456"
+      responses:
+        '200':
+          description: Draft configuration ready for review.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  draft_id:
+                    type: string
+                    example: "dr_456"
+                  status:
+                    type: string
+                    example: "ready"
+                  parts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        part_id:
+                          type: string
+                          example: "q1"
+                        type:
+                          type: string
+                          example: "query"
+                        summary:
+                          type: string
+                          example: "Orders pending approval"
+                        table:
+                          type: string
+                          example: "orders"
+                  excluded:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        table:
+                          type: string
+                          example: "customers"
+                        reason:
+                          type: string
+                          example: "no_access"
+
+  /v1/ai/app-drafts/{draft_id}/apply:
+    post:
+      summary: Apply Accepted Parts to Draft Canvas
+      description: Persists selected parts into a new draft application version without touching production.
+      operationId: applyDraftParts
+      parameters:
+        - name: draft_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: "dr_456"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - accepted_part_ids
+              properties:
+                accepted_part_ids:
+                  type: array
+                  items:
+                    type: string
+                  example: ["q1", "c1"]
+      responses:
+        '200':
+          description: Accepted parts applied to new app version.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  app_version_id:
+                    type: string
+                    example: "av_789"
+                  applied:
+                    type: integer
+                    example: 2
+                  rejected:
+                    type: integer
+                    example: 0
+
+  /v1/ai/app-drafts/{draft_id}/events:
+    post:
+      summary: Log Telemetry Event
+      description: Records user review, apply, or publish interactions for analytics.
+      operationId: logDraftEvent
+      parameters:
+        - name: draft_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: "dr_456"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - event_type
+              properties:
+                event_type:
+                  type: string
+                  example: "draft_reviewed"
+                parts_proposed:
+                  type: integer
+                  example: 4
+                parts_accepted:
+                  type: integer
+                  example: 3
+      responses:
+        '204':
+          description: Event successfully logged.
