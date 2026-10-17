@@ -1,85 +1,351 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" style="background:#0F172A; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
   <defs>
-    <linearGradient id="gradPrimary" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- Background gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A0F1E"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <!-- Blue button gradient -->
+    <linearGradient id="btnBlue" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#3B82F6"/>
       <stop offset="100%" stop-color="#1D4ED8"/>
     </linearGradient>
-    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#1E293B"/>
-      <stop offset="100%" stop-color="#0F172A"/>
+    <!-- Modal glass gradient -->
+    <linearGradient id="modalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" stop-opacity="0.98"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.98"/>
     </linearGradient>
-    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.5"/>
+    <!-- Sidebar gradient -->
+    <linearGradient id="sideGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0D1526"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <!-- Metric card gradients -->
+    <linearGradient id="cardBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E3A5F"/>
+      <stop offset="100%" stop-color="#172554"/>
+    </linearGradient>
+    <linearGradient id="cardGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14532D"/>
+      <stop offset="100%" stop-color="#052e16"/>
+    </linearGradient>
+    <linearGradient id="cardAmber" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#451a03"/>
+      <stop offset="100%" stop-color="#78350F"/>
+    </linearGradient>
+    <!-- Glow filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
+    <!-- Modal shadow -->
+    <filter id="modalShadow" x="-8%" y="-8%" width="116%" height="116%">
+      <feDropShadow dx="0" dy="24" stdDeviation="32" flood-color="#000000" flood-opacity="0.7"/>
+    </filter>
+    <!-- Blue glow -->
+    <filter id="blueGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feFlood flood-color="#3B82F6" flood-opacity="0.3" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Clip paths -->
+    <clipPath id="navClip">
+      <rect width="1440" height="64"/>
+    </clipPath>
+    <clipPath id="sideClip">
+      <rect x="0" y="64" width="220" height="836"/>
+    </clipPath>
   </defs>
 
-  <!-- Top App Navigation Bar -->
-  <rect x="0" y="0" width="1200" height="64" fill="#1E293B" border-bottom="1px solid #334155"/>
-  <line x1="0" y1="64" x2="1200" y2="64" stroke="#334155" stroke-width="1"/>
-  <circle cx="36" cy="32" r="14" fill="#3B82F6"/>
-  <text x="31" y="37" fill="#FFFFFF" font-size="14" font-weight="bold">AI</text>
-  <text x="62" y="38" fill="#F8FAFC" font-size="16" font-weight="600">InternalBuilder Studio</text>
-  <rect x="230" y="20" width="130" height="24" rx="12" fill="#334155"/>
-  <text x="242" y="36" fill="#94A3B8" font-size="12">Workspace: Operations</text>
-  <rect x="1050" y="18" width="110" height="28" rx="6" fill="#334155"/>
-  <text x="1066" y="36" fill="#E2E8F0" font-size="12">Role: ops_analyst</text>
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- BACKGROUND                                    -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect width="1440" height="900" fill="url(#bgGrad)"/>
 
-  <!-- Canvas Background Wireframe -->
-  <rect x="40" y="94" width="1120" height="666" rx="12" fill="#1E293B" stroke="#334155" stroke-width="1" stroke-dasharray="4 4" opacity="0.6"/>
-  <text x="500" y="440" fill="#475569" font-size="18" font-weight="500">Empty Application Canvas</text>
+  <!-- Subtle grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1E293B" stroke-width="0.5" opacity="0.4"/>
+    </pattern>
+  </defs>
+  <rect width="1440" height="900" fill="url(#grid)" opacity="0.5"/>
 
-  <!-- Centered AI Assistant Modal -->
-  <g filter="url(#shadow)">
-    <rect x="240" y="130" width="720" height="540" rx="16" fill="url(#cardGrad)" stroke="#475569" stroke-width="1.5"/>
-    
-    <!-- Modal Header -->
-    <rect x="240" y="130" width="720" height="64" rx="16" fill="#1E293B"/>
-    <circle cx="274" cy="162" r="12" fill="#3B82F6" opacity="0.2"/>
-    <circle cx="274" cy="162" r="6" fill="#60A5FA"/>
-    <text x="296" y="167" fill="#F8FAFC" font-size="16" font-weight="600">AI Draft Assistant</text>
-    <rect x="440" y="152" width="60" height="20" rx="4" fill="#22C55E" opacity="0.2"/>
-    <text x="449" y="166" fill="#4ADE80" font-size="11" font-weight="600">v1.0 MVP</text>
-    <text x="925" y="167" fill="#94A3B8" font-size="18" cursor="pointer">✕</text>
-    <line x1="240" y1="194" x2="960" y2="194" stroke="#334155" stroke-width="1"/>
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- TOP NAVIGATION BAR                           -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="0" y="0" width="1440" height="64" fill="#111827" clip-path="url(#navClip)"/>
+  <line x1="0" y1="64" x2="1440" y2="64" stroke="#1F2937" stroke-width="1"/>
 
-    <!-- Data Source Selector -->
-    <text x="274" y="228" fill="#94A3B8" font-size="13" font-weight="500">CONNECTED DATA SOURCE</text>
-    <rect x="274" y="240" width="652" height="42" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1"/>
-    <text x="292" y="266" fill="#F8FAFC" font-size="14">⚡ PostgreSQL: Brazilian E-Commerce (Olist DB)</text>
-    <text x="895" y="266" fill="#64748B" font-size="12">▼</text>
+  <!-- Logo area -->
+  <rect x="0" y="0" width="220" height="64" fill="#0D1526"/>
+  <circle cx="28" cy="32" r="16" fill="#1E3A8A" opacity="0.6"/>
+  <circle cx="28" cy="32" r="10" fill="#3B82F6"/>
+  <!-- AI text in logo -->
+  <text x="23" y="37" fill="#FFFFFF" font-size="11" font-weight="800" letter-spacing="-0.5">AI</text>
+  <text x="46" y="38" fill="#F1F5F9" font-size="14" font-weight="700" letter-spacing="-0.3">InternalBuilder</text>
+  <line x1="220" y1="0" x2="220" y2="64" stroke="#1F2937" stroke-width="1"/>
 
-    <!-- Prompt Input Box -->
-    <text x="274" y="318" fill="#94A3B8" font-size="13" font-weight="500">WHAT TOOL WOULD YOU LIKE TO BUILD?</text>
-    <rect x="274" y="330" width="652" height="100" rx="8" fill="#0F172A" stroke="#3B82F6" stroke-width="1.5"/>
-    <text x="292" y="362" fill="#F8FAFC" font-size="15" font-weight="500">Build an approvals dashboard from orders with pending delivery</text>
-    <text x="292" y="415" fill="#64748B" font-size="12">Press Enter or click Generate Draft below</text>
+  <!-- Nav breadcrumb -->
+  <text x="240" y="35" fill="#475569" font-size="13">Operations Workspace</text>
+  <text x="380" y="35" fill="#334155" font-size="13">/</text>
+  <text x="394" y="35" fill="#94A3B8" font-size="13">New Application</text>
 
-    <!-- Starter Prompts Section -->
-    <text x="274" y="462" fill="#94A3B8" font-size="13" font-weight="500">OR SELECT A STARTER PROMPT MATCHED TO YOUR DATA:</text>
-    
-    <!-- Starter Pill 1 -->
-    <rect x="274" y="478" width="230" height="32" rx="16" fill="#1E293B" stroke="#334155" stroke-width="1"/>
-    <text x="290" y="499" fill="#93C5FD" font-size="12">✦ Order Fulfillment Queue</text>
-    
-    <!-- Starter Pill 2 -->
-    <rect x="514" y="478" width="210" height="32" rx="16" fill="#1E293B" stroke="#334155" stroke-width="1"/>
-    <text x="530" y="499" fill="#93C5FD" font-size="12">✦ Delayed Delivery Alert View</text>
-    
-    <!-- Starter Pill 3 -->
-    <rect x="734" y="478" width="192" height="32" rx="16" fill="#1E293B" stroke="#334155" stroke-width="1"/>
-    <text x="748" y="499" fill="#93C5FD" font-size="12">✦ Payment Method Breakdown</text>
+  <!-- Nav right actions -->
+  <!-- Notification bell -->
+  <rect x="1220" y="20" width="36" height="36" rx="8" fill="#1E293B"/>
+  <text x="1229" y="44" fill="#94A3B8" font-size="18">🔔</text>
+  <!-- Avatar -->
+  <circle cx="1330" cy="32" r="18" fill="#1E3A8A"/>
+  <text x="1322" y="37" fill="#93C5FD" font-size="14" font-weight="600">SR</text>
+  <!-- Role badge -->
+  <rect x="1270" y="21" width="42" height="22" rx="11" fill="#1E3A8A"/>
+  <text x="1280" y="36" fill="#93C5FD" font-size="10" font-weight="600">ops_analyst</text>
+  <!-- Help -->
+  <rect x="1358" y="20" width="36" height="36" rx="8" fill="#1E293B"/>
+  <text x="1368" y="44" fill="#94A3B8" font-size="18">?</text>
 
-    <!-- Starter Pill 4 & 5 -->
-    <rect x="274" y="518" width="200" height="32" rx="16" fill="#1E293B" stroke="#334155" stroke-width="1"/>
-    <text x="290" y="539" fill="#93C5FD" font-size="12">✦ Canceled Orders Triage</text>
-    <rect x="484" y="518" width="230" height="32" rx="16" fill="#1E293B" stroke="#334155" stroke-width="1"/>
-    <text x="500" y="539" fill="#93C5FD" font-size="12">✦ Product Freight Ratio Table</text>
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- LEFT SIDEBAR                                 -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="0" y="64" width="220" height="836" fill="url(#sideGrad)"/>
+  <line x1="220" y1="64" x2="220" y2="900" stroke="#1F2937" stroke-width="1"/>
 
-    <!-- Footer Controls -->
-    <line x1="240" y1="586" x2="960" y2="586" stroke="#334155" stroke-width="1"/>
-    <text x="274" y="624" fill="#64748B" font-size="12">Zero customer row data sent to model. Governed by workspace RBAC.</text>
-    
-    <rect x="786" y="602" width="140" height="42" rx="8" fill="url(#gradPrimary)"/>
-    <text x="808" y="628" fill="#FFFFFF" font-size="14" font-weight="600">Generate Draft →</text>
+  <!-- Sidebar section: WORKSPACE -->
+  <text x="20" y="104" fill="#475569" font-size="10" font-weight="600" letter-spacing="1.2">WORKSPACE</text>
+
+  <!-- Active nav item: New App Builder -->
+  <rect x="8" y="112" width="204" height="38" rx="8" fill="#1E3A8A" opacity="0.5"/>
+  <rect x="8" y="112" width="3" height="38" rx="2" fill="#3B82F6"/>
+  <text x="26" y="136" fill="#93C5FD" font-size="13" font-weight="600">✦ New App Builder</text>
+
+  <!-- Other nav items -->
+  <text x="26" y="172" fill="#64748B" font-size="13">⊞ My Applications</text>
+  <text x="26" y="206" fill="#64748B" font-size="13">⚡ Data Sources</text>
+  <text x="26" y="240" fill="#64748B" font-size="13">👥 Team Access</text>
+  <text x="26" y="274" fill="#64748B" font-size="13">📋 Audit Logs</text>
+
+  <!-- Sidebar section: TEMPLATES -->
+  <text x="20" y="314" fill="#475569" font-size="10" font-weight="600" letter-spacing="1.2">TEMPLATES</text>
+  <text x="26" y="338" fill="#64748B" font-size="13">📊 Dashboards</text>
+  <text x="26" y="372" fill="#64748B" font-size="13">📝 Forms</text>
+  <text x="26" y="406" fill="#64748B" font-size="13">📦 Data Tables</text>
+
+  <!-- Sidebar: Connected Sources -->
+  <text x="20" y="446" fill="#475569" font-size="10" font-weight="600" letter-spacing="1.2">CONNECTED SOURCES</text>
+  <rect x="12" y="455" width="196" height="44" rx="8" fill="#0F172A" stroke="#1F2937" stroke-width="1"/>
+  <circle cx="30" cy="477" r="8" fill="#16A34A"/>
+  <text x="24" y="481" fill="#FFFFFF" font-size="9" font-weight="700">PG</text>
+  <text x="44" y="474" fill="#E2E8F0" font-size="12" font-weight="500">Olist E-Commerce</text>
+  <text x="44" y="490" fill="#4ADE80" font-size="10">● Connected · 12 tables</text>
+
+  <!-- Sidebar bottom: User info -->
+  <rect x="0" y="840" width="220" height="60" fill="#0D1526"/>
+  <line x1="0" y1="840" x2="220" y2="840" stroke="#1F2937" stroke-width="1"/>
+  <circle cx="28" cy="870" r="16" fill="#1E3A8A"/>
+  <text x="20" y="875" fill="#93C5FD" font-size="13" font-weight="600">SR</text>
+  <text x="50" y="867" fill="#E2E8F0" font-size="13" font-weight="500">Subham Rai</text>
+  <text x="50" y="882" fill="#64748B" font-size="11">ops_analyst · Free Plan</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- MAIN CANVAS AREA                             -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="220" y="64" width="1220" height="836" fill="#0A0F1E"/>
+
+  <!-- Page title -->
+  <text x="260" y="110" fill="#F8FAFC" font-size="22" font-weight="700">Build a New Application</text>
+  <text x="260" y="134" fill="#64748B" font-size="14">Start with AI or choose a template — your canvas is ready below</text>
+
+  <!-- KPI Row -->
+  <!-- Card 1: Total Orders -->
+  <rect x="260" y="152" width="190" height="80" rx="10" fill="url(#cardBlue)" stroke="#1E3A8A" stroke-width="1"/>
+  <text x="278" y="180" fill="#93C5FD" font-size="11" font-weight="600" letter-spacing="0.5">TOTAL ORDERS</text>
+  <text x="278" y="210" fill="#F8FAFC" font-size="24" font-weight="700">99,441</text>
+  <text x="278" y="226" fill="#4ADE80" font-size="11">↑ 12.4% this month</text>
+
+  <!-- Card 2: Pending Delivery -->
+  <rect x="464" y="152" width="190" height="80" rx="10" fill="url(#cardAmber)" stroke="#D97706" stroke-width="1"/>
+  <text x="482" y="180" fill="#FCD34D" font-size="11" font-weight="600" letter-spacing="0.5">PENDING DELIVERY</text>
+  <text x="482" y="210" fill="#F8FAFC" font-size="24" font-weight="700">8,272</text>
+  <text x="482" y="226" fill="#FCD34D" font-size="11">⚠ Requires attention</text>
+
+  <!-- Card 3: Revenue -->
+  <rect x="668" y="152" width="190" height="80" rx="10" fill="url(#cardGreen)" stroke="#16A34A" stroke-width="1"/>
+  <text x="686" y="180" fill="#86EFAC" font-size="11" font-weight="600" letter-spacing="0.5">TOTAL REVENUE</text>
+  <text x="686" y="210" fill="#F8FAFC" font-size="24" font-weight="700">R$16.0M</text>
+  <text x="686" y="226" fill="#86EFAC" font-size="11">↑ 8.1% this quarter</text>
+
+  <!-- Card 4: Avg Delivery -->
+  <rect x="872" y="152" width="190" height="80" rx="10" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+  <text x="890" y="180" fill="#94A3B8" font-size="11" font-weight="600" letter-spacing="0.5">AVG DELIVERY</text>
+  <text x="890" y="210" fill="#F8FAFC" font-size="24" font-weight="700">12.5 days</text>
+  <text x="890" y="226" fill="#EF4444" font-size="11">↓ 2.1d above SLA</text>
+
+  <!-- Empty Canvas Placeholder -->
+  <rect x="260" y="248" width="1120" height="420" rx="12" fill="#0D1526" stroke="#1E293B" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <!-- Canvas grid dots -->
+  <circle cx="320" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="360" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="400" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="440" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="480" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="520" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="560" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="600" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="640" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="680" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="720" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="760" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="800" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="840" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="880" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="920" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="960" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="1000" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="1040" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="1080" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="1120" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="1160" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="1200" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="1240" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="1280" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="1320" cy="308" r="1.5" fill="#1E293B"/>
+  <circle cx="320" cy="348" r="1.5" fill="#1E293B"/>
+  <circle cx="360" cy="348" r="1.5" fill="#1E293B"/>
+  <circle cx="400" cy="348" r="1.5" fill="#1E293B"/>
+  <circle cx="440" cy="348" r="1.5" fill="#1E293B"/>
+  <circle cx="480" cy="348" r="1.5" fill="#1E293B"/>
+  <circle cx="320" cy="388" r="1.5" fill="#1E293B"/>
+  <circle cx="360" cy="388" r="1.5" fill="#1E293B"/>
+  <circle cx="400" cy="388" r="1.5" fill="#1E293B"/>
+  <circle cx="440" cy="388" r="1.5" fill="#1E293B"/>
+
+  <!-- Empty state icon and text -->
+  <text x="820" y="420" fill="#1E293B" font-size="48" text-anchor="middle">⊞</text>
+  <text x="820" y="468" fill="#334155" font-size="16" font-weight="500" text-anchor="middle">Your application canvas is empty</text>
+  <text x="820" y="490" fill="#1E293B" font-size="13" text-anchor="middle">Use the AI Draft Assistant on the right to generate your first component →</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- AI DRAFT ASSISTANT PANEL (Right Drawer)      -->
+  <!-- ═══════════════════════════════════════════ -->
+  <g filter="url(#modalShadow)">
+    <!-- Panel background -->
+    <rect x="900" y="248" width="480" height="620" rx="16" fill="url(#modalGrad)" stroke="#2D3F55" stroke-width="1.5"/>
+
+    <!-- Blue glow accent at top -->
+    <rect x="900" y="248" width="480" height="4" rx="2" fill="url(#btnBlue)" opacity="0.8"/>
+
+    <!-- Panel Header -->
+    <rect x="900" y="252" width="480" height="64" rx="16" fill="#1E293B"/>
+    <rect x="900" y="288" width="480" height="28" fill="#1E293B"/>
+
+    <!-- Pulse animation rings (static representation) -->
+    <circle cx="934" cy="284" r="20" fill="#1E3A8A" opacity="0.15"/>
+    <circle cx="934" cy="284" r="13" fill="#1E3A8A" opacity="0.25"/>
+    <circle cx="934" cy="284" r="7" fill="#3B82F6"/>
+    <!-- Spark icon -->
+    <text x="930" y="289" fill="#FFFFFF" font-size="11">✦</text>
+
+    <text x="956" y="282" fill="#F8FAFC" font-size="15" font-weight="700">AI Draft Assistant</text>
+    <rect x="1070" y="272" width="52" height="20" rx="6" fill="#022c22"/>
+    <text x="1078" y="286" fill="#4ADE80" font-size="10" font-weight="700">● LIVE</text>
+    <text x="1348" y="282" fill="#475569" font-size="20">✕</text>
+
+    <!-- Divider -->
+    <line x1="900" y1="316" x2="1380" y2="316" stroke="#1F2937" stroke-width="1"/>
+
+    <!-- CONNECTED SOURCE label -->
+    <text x="924" y="344" fill="#64748B" font-size="10" font-weight="700" letter-spacing="1.5">CONNECTED DATA SOURCE</text>
+
+    <!-- Data source dropdown -->
+    <rect x="920" y="352" width="440" height="44" rx="8" fill="#0F172A" stroke="#1E3A8A" stroke-width="1.5"/>
+    <!-- Postgres icon -->
+    <circle cx="940" cy="374" r="10" fill="#336791" opacity="0.9"/>
+    <text x="934" y="378" fill="#FFFFFF" font-size="9" font-weight="800">PG</text>
+    <text x="958" y="378" fill="#F8FAFC" font-size="13" font-weight="500">PostgreSQL: Brazilian E-Commerce (Olist DB)</text>
+    <circle cx="1346" cy="374" r="8" fill="#16A34A" opacity="0.2"/>
+    <circle cx="1346" cy="374" r="4" fill="#4ADE80"/>
+    <text x="1355" y="378" fill="#475569" font-size="12">▼</text>
+
+    <!-- Schema preview pills -->
+    <text x="924" y="418" fill="#64748B" font-size="10" font-weight="700" letter-spacing="1.5">AVAILABLE TABLES (12)</text>
+    <rect x="920" y="424" width="62" height="20" rx="10" fill="#0F172A" stroke="#1E3A8A" stroke-width="1"/>
+    <text x="930" y="438" fill="#60A5FA" font-size="10">orders</text>
+    <rect x="990" y="424" width="78" height="20" rx="10" fill="#0F172A" stroke="#1E3A8A" stroke-width="1"/>
+    <text x="1000" y="438" fill="#60A5FA" font-size="10">order_items</text>
+    <rect x="1076" y="424" width="72" height="20" rx="10" fill="#0F172A" stroke="#1E3A8A" stroke-width="1"/>
+    <text x="1086" y="438" fill="#60A5FA" font-size="10">products</text>
+    <rect x="1156" y="424" width="60" height="20" rx="10" fill="#0F172A" stroke="#475569" stroke-width="1" opacity="0.6"/>
+    <text x="1165" y="438" fill="#475569" font-size="10">sellers</text>
+    <rect x="1224" y="424" width="76" height="20" rx="10" fill="#0F172A" stroke="#475569" stroke-width="1" opacity="0.6"/>
+    <text x="1232" y="438" fill="#475569" font-size="10">payments</text>
+    <text x="1306" y="438" fill="#475569" font-size="10" opacity="0.6">+7 more</text>
+
+    <!-- PROMPT INPUT label -->
+    <text x="924" y="468" fill="#64748B" font-size="10" font-weight="700" letter-spacing="1.5">DESCRIBE YOUR APPLICATION</text>
+
+    <!-- Prompt textarea — active/focused state -->
+    <rect x="920" y="476" width="440" height="96" rx="10" fill="#0A0F1E" stroke="#3B82F6" stroke-width="2"/>
+    <!-- Inner glow -->
+    <rect x="921" y="477" width="438" height="94" rx="9" fill="none" stroke="#1D4ED8" stroke-width="1" opacity="0.4"/>
+
+    <!-- Typed text in prompt -->
+    <text x="936" y="504" fill="#F8FAFC" font-size="14" font-weight="500">Build an approvals dashboard from orders</text>
+    <text x="936" y="524" fill="#F8FAFC" font-size="14" font-weight="500">with pending delivery status</text>
+    <!-- Cursor blink (static) -->
+    <rect x="936" y="530" width="2" height="16" rx="1" fill="#3B82F6"/>
+    <text x="936" y="562" fill="#334155" font-size="12">Press Enter or click Generate Draft →</text>
+
+    <!-- AI hint chip -->
+    <rect x="920" y="582" width="440" height="32" rx="8" fill="#0F172A" stroke="#1E3A8A" stroke-width="1"/>
+    <text x="934" y="602" fill="#60A5FA" font-size="12">🧠 AI will use: orders, order_items, sellers — customers table restricted by RBAC</text>
+
+    <!-- STARTER PROMPTS label -->
+    <text x="924" y="636" fill="#64748B" font-size="10" font-weight="700" letter-spacing="1.5">OR START WITH A SCHEMA-MATCHED PROMPT</text>
+
+    <!-- Pill Row 1 -->
+    <!-- Pill 1 -->
+    <rect x="920" y="644" width="196" height="34" rx="17" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+    <rect x="920" y="644" width="196" height="34" rx="17" fill="none" stroke="#1E3A8A" stroke-width="1" opacity="0.5"/>
+    <text x="936" y="666" fill="#93C5FD" font-size="12">✦ Order Fulfillment Queue</text>
+    <!-- Pill 2 -->
+    <rect x="1124" y="644" width="236" height="34" rx="17" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+    <text x="1140" y="666" fill="#93C5FD" font-size="12">✦ Delayed Delivery Alert View</text>
+
+    <!-- Pill Row 2 -->
+    <!-- Pill 3 -->
+    <rect x="920" y="686" width="210" height="34" rx="17" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+    <text x="936" y="708" fill="#93C5FD" font-size="12">✦ Payment Method Breakdown</text>
+    <!-- Pill 4 -->
+    <rect x="1138" y="686" width="184" height="34" rx="17" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+    <text x="1154" y="708" fill="#93C5FD" font-size="12">✦ Canceled Orders Triage</text>
+
+    <!-- Pill Row 3 -->
+    <rect x="920" y="728" width="224" height="34" rx="17" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+    <text x="936" y="750" fill="#93C5FD" font-size="12">✦ Product Freight Ratio Table</text>
+
+    <!-- Footer divider -->
+    <line x1="900" y1="776" x2="1380" y2="776" stroke="#1F2937" stroke-width="1"/>
+
+    <!-- Security notice -->
+    <text x="924" y="800" fill="#475569" font-size="11">🔒 Zero customer row data sent to model · Governed by workspace RBAC</text>
+
+    <!-- Generate CTA Button — prominent -->
+    <rect x="920" y="812" width="440" height="48" rx="10" fill="url(#btnBlue)" filter="url(#blueGlow)"/>
+    <!-- Button shine -->
+    <rect x="920" y="812" width="440" height="22" rx="10" fill="#FFFFFF" opacity="0.05"/>
+    <text x="1100" y="841" fill="#FFFFFF" font-size="15" font-weight="700" text-anchor="middle">Generate Draft  →</text>
+    <!-- Keyboard shortcut hint -->
+    <rect x="1316" y="824" width="36" height="24" rx="4" fill="#FFFFFF" opacity="0.1"/>
+    <text x="1322" y="840" fill="#FFFFFF" font-size="11" opacity="0.7">⏎</text>
   </g>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- BOTTOM STATUS BAR                            -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="220" y="870" width="1220" height="30" fill="#0D1526"/>
+  <line x1="220" y1="870" x2="1440" y2="870" stroke="#1F2937" stroke-width="1"/>
+  <circle cx="246" cy="885" r="4" fill="#4ADE80"/>
+  <text x="256" y="889" fill="#475569" font-size="11">Connected · ops_analyst · Olist DB · v1.4.2</text>
+  <text x="1340" y="889" fill="#475569" font-size="11">Draft Mode</text>
 </svg>

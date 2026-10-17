@@ -1,80 +1,257 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" style="background:#0F172A; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 960" width="1440" height="960" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
   <defs>
-    <linearGradient id="primaryBtn" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#2563EB"/>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A0F1E"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="btnBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6"/>
       <stop offset="100%" stop-color="#1D4ED8"/>
     </linearGradient>
-    <filter id="shadowBox" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000000" flood-opacity="0.6"/>
+    <linearGradient id="sideGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0D1526"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="modalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#182035"/>
+      <stop offset="100%" stop-color="#0D1322"/>
+    </linearGradient>
+    <filter id="modalShadow" x="-6%" y="-4%" width="112%" height="112%">
+      <feDropShadow dx="0" dy="24" stdDeviation="32" flood-color="#000000" flood-opacity="0.75"/>
     </filter>
+    <filter id="blueGlow" x="-15%" y="-15%" width="130%" height="130%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feFlood flood-color="#3B82F6" flood-opacity="0.3" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="greenGlow" x="-15%" y="-15%" width="130%" height="130%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feFlood flood-color="#22C55E" flood-opacity="0.2" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#141D30" stroke-width="0.6"/>
+    </pattern>
   </defs>
 
-  <!-- App Header -->
-  <rect x="0" y="0" width="1200" height="64" fill="#1E293B"/>
-  <line x1="0" y1="64" x2="1200" y2="64" stroke="#334155" stroke-width="1"/>
-  <circle cx="36" cy="32" r="14" fill="#3B82F6"/>
-  <text x="31" y="37" fill="#FFFFFF" font-size="14" font-weight="bold">AI</text>
-  <text x="62" y="38" fill="#F8FAFC" font-size="16" font-weight="600">InternalBuilder Studio</text>
-  <rect x="1050" y="18" width="110" height="28" rx="6" fill="#334155"/>
-  <text x="1066" y="36" fill="#E2E8F0" font-size="12">Role: ops_analyst</text>
+  <!-- ─────────── BACKGROUND ─────────── -->
+  <rect width="1440" height="960" fill="url(#bgGrad)"/>
+  <rect width="1440" height="960" fill="url(#grid)" opacity="0.7"/>
 
-  <!-- Modal Container -->
-  <g filter="url(#shadowBox)">
-    <rect x="140" y="90" width="920" height="640" rx="16" fill="#1E293B" stroke="#475569" stroke-width="1.5"/>
+  <!-- ─────────── TOP NAV BAR ─────────── -->
+  <rect x="0" y="0" width="1440" height="60" fill="#111827"/>
+  <line x1="0" y1="60" x2="1440" y2="60" stroke="#1F2937" stroke-width="1"/>
+  <!-- Logo zone -->
+  <rect x="0" y="0" width="220" height="60" fill="#0D1526"/>
+  <circle cx="26" cy="30" r="15" fill="#1E3A8A" opacity="0.5"/>
+  <circle cx="26" cy="30" r="9"  fill="#3B82F6"/>
+  <text x="21" y="35" fill="#FFFFFF" font-size="10" font-weight="800">AI</text>
+  <text x="44" y="35" fill="#F1F5F9" font-size="13" font-weight="700">InternalBuilder</text>
+  <line x1="220" y1="0" x2="220" y2="60" stroke="#1F2937" stroke-width="1"/>
+  <!-- Breadcrumb -->
+  <text x="240" y="33" fill="#475569" font-size="12">Operations Workspace</text>
+  <text x="376" y="33" fill="#334155" font-size="12">/</text>
+  <text x="390" y="33" fill="#94A3B8" font-size="12">Approvals Dashboard</text>
+  <text x="530" y="33" fill="#334155" font-size="12">/</text>
+  <rect x="545" y="20" width="74" height="20" rx="10" fill="#1E3A8A"/>
+  <text x="557" y="34" fill="#93C5FD" font-size="10" font-weight="600">Draft v1.0</text>
+  <!-- Nav right -->
+  <rect x="1218" y="18" width="34" height="34" rx="7" fill="#1E293B"/>
+  <text x="1226" y="40" fill="#94A3B8" font-size="16">🔔</text>
+  <rect x="1265" y="19" width="40" height="21" rx="10" fill="#1E3A8A"/>
+  <text x="1274" y="33" fill="#93C5FD" font-size="9" font-weight="600">ops_analyst</text>
+  <circle cx="1326" cy="30" r="16" fill="#1E3A8A"/>
+  <text x="1319" y="35" fill="#93C5FD" font-size="13" font-weight="600">SR</text>
 
-    <!-- Header -->
-    <rect x="140" y="90" width="920" height="60" rx="16" fill="#0F172A"/>
-    <text x="172" y="126" fill="#F8FAFC" font-size="17" font-weight="600">Draft Diff Preview — Review & Select Parts</text>
-    <rect x="580" y="112" width="120" height="22" rx="4" fill="#3B82F6" opacity="0.2"/>
-    <text x="590" y="127" fill="#60A5FA" font-size="11" font-weight="600">3 Proposed Parts</text>
-    <text x="1025" y="126" fill="#94A3B8" font-size="18">✕</text>
-    <line x1="140" y1="150" x2="1060" y2="150" stroke="#334155" stroke-width="1"/>
+  <!-- ─────────── LEFT SIDEBAR ─────────── -->
+  <rect x="0" y="60" width="220" height="900" fill="url(#sideGrad)"/>
+  <line x1="220" y1="60" x2="220" y2="960" stroke="#1F2937" stroke-width="1"/>
+  <text x="18" y="98" fill="#475569" font-size="9" font-weight="700" letter-spacing="1.3">WORKSPACE</text>
+  <rect x="7" y="106" width="206" height="36" rx="7" fill="#1E3A8A" opacity="0.35"/>
+  <rect x="7" y="106" width="3"   height="36" rx="2" fill="#3B82F6"/>
+  <text x="24" y="129" fill="#93C5FD" font-size="12" font-weight="600">✦ App Builder</text>
+  <text x="24" y="163" fill="#64748B" font-size="12">⊞  My Applications</text>
+  <text x="24" y="195" fill="#64748B" font-size="12">⚡  Data Sources</text>
+  <!-- Draft history -->
+  <text x="18" y="232" fill="#475569" font-size="9" font-weight="700" letter-spacing="1.3">DRAFT HISTORY</text>
+  <rect x="10" y="239" width="200" height="32" rx="7" fill="#1E3A8A" opacity="0.18"/>
+  <text x="24" y="259" fill="#60A5FA" font-size="11">● v1.0  (current)</text>
+  <text x="24" y="285" fill="#3A4A5C" font-size="11">  v0.9</text>
+  <text x="24" y="307" fill="#3A4A5C" font-size="11">  v0.8</text>
+  <!-- User panel -->
+  <rect x="0" y="900" width="220" height="60" fill="#0D1526"/>
+  <line x1="0" y1="900" x2="220" y2="900" stroke="#1F2937" stroke-width="1"/>
+  <circle cx="26" cy="930" r="15" fill="#1E3A8A"/>
+  <text x="19" y="934" fill="#93C5FD" font-size="12" font-weight="600">SR</text>
+  <text x="48" y="927" fill="#E2E8F0" font-size="12" font-weight="500">Subham Rai</text>
+  <text x="48" y="942" fill="#64748B" font-size="10">ops_analyst · Free Plan</text>
 
-    <!-- Exclusions Notice Banner (Orange/Amber) -->
-    <rect x="172" y="165" width="856" height="42" rx="8" fill="#451A03" stroke="#D97706" stroke-width="1.2"/>
-    <text x="194" y="191" fill="#FDE68A" font-size="14" font-weight="bold">⚠️ Table Exclusion Notice:</text>
-    <text x="365" y="191" fill="#FEF3C7" font-size="13">Excluded 1 table (<code>customers</code>): Requires workspace admin permission. Only authorized tables were queried.</text>
+  <!-- ─────────── MAIN CONTENT BACKDROP ─────────── -->
+  <rect x="220" y="60" width="1220" height="900" fill="#060C18" opacity="0.82"/>
 
-    <!-- Part 1: Query (Accepted) -->
-    <rect x="172" y="222" width="856" height="110" rx="10" fill="#0F172A" stroke="#22C55E" stroke-width="1.5"/>
-    <!-- Checkbox checked -->
-    <rect x="192" y="242" width="22" height="22" rx="6" fill="#22C55E"/>
-    <text x="197" y="258" fill="#FFFFFF" font-size="14" font-weight="bold">✓</text>
-    <text x="226" y="258" fill="#F8FAFC" font-size="15" font-weight="600">Part q1: SQL Query — "Orders Pending Delivery"</text>
-    <rect x="620" y="242" width="90" height="20" rx="4" fill="#166534"/>
-    <text x="632" y="256" fill="#86EFAC" font-size="11" font-weight="600">TABLE: orders</text>
-    <text x="226" y="284" fill="#94A3B8" font-size="13">Plain-Language Summary: Retrieves orders where order_status is 'shipped' or 'processing' with carrier timestamps.</text>
-    <rect x="226" y="294" width="780" height="26" rx="4" fill="#1E293B"/>
-    <text x="236" y="311" fill="#38BDF8" font-size="11" font-family="Courier, monospace">SELECT order_id, order_status, order_purchase_timestamp, order_estimated_delivery_date FROM orders WHERE order_status != 'delivered' LIMIT 100;</text>
+  <!-- ─────────── DIFF REVIEW MODAL  (y=72 → y=888) ─────────── -->
+  <!-- Total modal height: 816px  -->
+  <g filter="url(#modalShadow)">
+    <!-- Modal shell -->
+    <rect x="258" y="72" width="904" height="816" rx="14" fill="url(#modalGrad)" stroke="#253247" stroke-width="1.5"/>
+    <!-- Blue top accent bar -->
+    <rect x="258" y="72" width="904" height="4" rx="3" fill="url(#btnBlue)"/>
 
-    <!-- Part 2: Table Component (Accepted) -->
-    <rect x="172" y="344" width="856" height="96" rx="10" fill="#0F172A" stroke="#22C55E" stroke-width="1.5"/>
-    <rect x="192" y="364" width="22" height="22" rx="6" fill="#22C55E"/>
-    <text x="197" y="380" fill="#FFFFFF" font-size="14" font-weight="bold">✓</text>
-    <text x="226" y="380" fill="#F8FAFC" font-size="15" font-weight="600">Part c1: Table Component — "Orders Live Operational Grid"</text>
-    <rect x="670" y="364" width="100" height="20" rx="4" fill="#1E3A8A"/>
-    <text x="682" y="378" fill="#93C5FD" font-size="11" font-weight="600">WIDGET: table</text>
-    <text x="226" y="406" fill="#94A3B8" font-size="13">Bound to Query q1. Columns displayed: order_id, order_status badge, purchase date, estimated delivery date.</text>
-    <text x="226" y="425" fill="#64748B" font-size="12">Features included: Column sort, search filter bar, and status coloring.</text>
+    <!-- ══════ HEADER  (72 → 140) ══════ -->
+    <rect x="258" y="76" width="904" height="64" rx="12" fill="#182035"/>
+    <rect x="258" y="118" width="904" height="22" fill="#182035"/>
+    <!-- Icon -->
+    <rect x="280" y="94" width="30" height="30" rx="7" fill="#1E3A8A"/>
+    <text x="286" y="114" fill="#60A5FA" font-size="17">⊟</text>
+    <!-- Title -->
+    <text x="320" y="114" fill="#F8FAFC" font-size="16" font-weight="700">Draft Diff Preview</text>
+    <text x="474" y="114" fill="#475569" font-size="15">  —  Review &amp; Select Parts</text>
+    <!-- Badge -->
+    <rect x="854" y="97" width="112" height="24" rx="12" fill="#1E3A8A" opacity="0.55"/>
+    <circle cx="869" cy="109" r="4" fill="#60A5FA"/>
+    <text x="879" y="113" fill="#93C5FD" font-size="11" font-weight="600">3 Proposed Parts</text>
+    <!-- Close -->
+    <rect x="1122" y="94" width="30" height="30" rx="7" fill="#1F2937"/>
+    <text x="1130" y="114" fill="#64748B" font-size="15">✕</text>
 
-    <!-- Part 3: Secondary Component (Rejected / Unchecked) -->
-    <rect x="172" y="452" width="856" height="96" rx="10" fill="#0F172A" stroke="#475569" stroke-width="1"/>
-    <!-- Checkbox unchecked -->
-    <rect x="192" y="472" width="22" height="22" rx="6" fill="#1E293B" stroke="#64748B" stroke-width="1.5"/>
-    <text x="226" y="488" fill="#94A3B8" font-size="15" font-weight="600">Part c2: Metric Card — "Unassigned Carrier Counter"</text>
-    <rect x="620" y="472" width="110" height="20" rx="4" fill="#334155"/>
-    <text x="630" y="486" fill="#CBD5E1" font-size="11" font-weight="600">WIDGET: stats_card</text>
-    <text x="226" y="514" fill="#64748B" font-size="13">Displays count of unassigned shipments. (Unchecked: Builder opted to reject this widget to keep dashboard minimal).</text>
-    <text x="226" y="533" fill="#EF4444" font-size="12">✕ Status: Will be excluded on apply</text>
+    <!-- Header divider -->
+    <line x1="258" y1="140" x2="1162" y2="140" stroke="#1E2D42" stroke-width="1"/>
 
-    <!-- Bottom Actions -->
-    <line x1="140" y1="655" x2="1060" y2="655" stroke="#334155" stroke-width="1"/>
-    <text x="172" y="688" fill="#94A3B8" font-size="13">Selection: <tspan fill="#4ADE80" font-weight="bold">2 parts accepted</tspan>, <tspan fill="#EF4444">1 part rejected</tspan>. Commits to isolated Draft Version.</text>
-    
-    <rect x="730" y="670" width="110" height="38" rx="6" fill="#334155"/>
-    <text x="752" y="694" fill="#CBD5E1" font-size="13" font-weight="500">Cancel</text>
+    <!-- ══════ EXCLUSION BANNER  (148 → 202) ══════ -->
+    <rect x="278" y="148" width="864" height="54" rx="9" fill="#1C0A00" stroke="#D97706" stroke-width="1.4"/>
+    <rect x="278" y="148" width="4"   height="54" rx="2" fill="#D97706"/>
+    <rect x="292" y="163" width="26"  height="26" rx="6" fill="#D97706" opacity="0.18"/>
+    <text x="297" y="181" fill="#F59E0B" font-size="15">⚠</text>
+    <text x="328" y="170" fill="#FDE68A" font-size="12" font-weight="700">Table Exclusion Notice</text>
+    <text x="328" y="188" fill="#FEF3C7" font-size="11">Excluded 1 table <tspan fill="#FCD34D" font-weight="600">customers</tspan> — Requires workspace admin permission. Remaining authorized tables were queried.</text>
 
-    <rect x="856" y="670" width="172" height="38" rx="6" fill="url(#primaryBtn)"/>
-    <text x="874" y="694" fill="#FFFFFF" font-size="13" font-weight="600">Apply 2 Parts to Draft →</text>
+    <!-- ══════ PART Q1  — SQL QUERY  ACCEPTED  (210 → 346) ══════ -->
+    <rect x="278" y="210" width="864" height="136" rx="11" fill="#071a0f" stroke="#22C55E" stroke-width="1.5" filter="url(#greenGlow)"/>
+    <rect x="278" y="210" width="4"   height="136" rx="2" fill="#22C55E"/>
+    <!-- Checkbox -->
+    <rect x="294" y="228" width="22" height="22" rx="6" fill="#22C55E"/>
+    <text x="298" y="244" fill="#FFFFFF" font-size="13" font-weight="800">✓</text>
+    <!-- Title row -->
+    <text x="326" y="244" fill="#F8FAFC" font-size="13" font-weight="700">Part q1  —  SQL Query</text>
+    <rect x="486" y="232" width="118" height="20" rx="10" fill="#064e3b"/>
+    <circle cx="500" cy="242" r="3" fill="#4ADE80"/>
+    <text x="508" y="246" fill="#86EFAC" font-size="10" font-weight="600">TABLE: orders</text>
+    <rect x="612" y="232" width="60" height="20" rx="10" fill="#0f3460"/>
+    <text x="621" y="246" fill="#93C5FD" font-size="10" font-weight="600">SELECT</text>
+    <!-- Summary -->
+    <text x="326" y="268" fill="#94A3B8" font-size="11">Plain-language: Retrieves orders where status = 'shipped' or 'processing', with carrier timestamps and expected delivery.</text>
+
+    <!-- SQL code block  (y=278 → 346) -->
+    <rect x="294" y="278" width="828" height="56" rx="7" fill="#070C18" stroke="#1E293B" stroke-width="1"/>
+    <!-- line-number gutter -->
+    <rect x="294" y="278" width="44" height="56" rx="7" fill="#111827"/>
+    <text x="302" y="296" fill="#475569" font-size="10">1</text>
+    <text x="302" y="316" fill="#475569" font-size="10">2</text>
+    <!-- SQL line 1 -->
+    <text x="346" y="296" fill="#7DD3FC" font-size="11" font-family="'Courier New',Courier,monospace">SELECT</text>
+    <text x="393" y="296" fill="#E2E8F0" font-size="11" font-family="'Courier New',Courier,monospace">order_id, order_status, order_purchase_timestamp, order_estimated_delivery_date</text>
+    <!-- SQL line 2 -->
+    <text x="346" y="316" fill="#7DD3FC" font-size="11" font-family="'Courier New',Courier,monospace">FROM</text>
+    <text x="383" y="316" fill="#E2E8F0" font-size="11" font-family="'Courier New',Courier,monospace">orders</text>
+    <text x="427" y="316" fill="#7DD3FC" font-size="11" font-family="'Courier New',Courier,monospace">WHERE</text>
+    <text x="469" y="316" fill="#E2E8F0" font-size="11" font-family="'Courier New',Courier,monospace">order_status != 'delivered'</text>
+    <text x="640" y="316" fill="#7DD3FC" font-size="11" font-family="'Courier New',Courier,monospace">LIMIT</text>
+    <text x="677" y="316" fill="#F97316" font-size="11" font-family="'Courier New',Courier,monospace">100;</text>
+    <!-- SQL line 3 -->
+    <text x="346" y="328" fill="#3A4A5C" font-size="10" font-family="'Courier New',Courier,monospace">-- returns ~8,272 rows  |  estimated 40 ms  |  RBAC-filtered</text>
+
+    <!-- ══════ PART C1 — TABLE COMPONENT  ACCEPTED  (354 → 474) ══════ -->
+    <rect x="278" y="354" width="864" height="120" rx="11" fill="#071a0f" stroke="#22C55E" stroke-width="1.5" filter="url(#greenGlow)"/>
+    <rect x="278" y="354" width="4"   height="120" rx="2" fill="#22C55E"/>
+    <!-- Checkbox -->
+    <rect x="294" y="372" width="22" height="22" rx="6" fill="#22C55E"/>
+    <text x="298" y="388" fill="#FFFFFF" font-size="13" font-weight="800">✓</text>
+    <!-- Title row -->
+    <text x="326" y="388" fill="#F8FAFC" font-size="13" font-weight="700">Part c1  —  Table Component</text>
+    <rect x="508" y="376" width="154" height="20" rx="10" fill="#0c2a5a"/>
+    <circle cx="522" cy="386" r="3" fill="#60A5FA"/>
+    <text x="530" y="390" fill="#93C5FD" font-size="10" font-weight="600">WIDGET: orders_table</text>
+    <rect x="670" y="376" width="76" height="20" rx="10" fill="#064e3b"/>
+    <text x="680" y="390" fill="#86EFAC" font-size="10" font-weight="600">Bound: q1</text>
+    <!-- Description -->
+    <text x="326" y="412" fill="#94A3B8" font-size="11">Live data grid bound to Query q1.  Columns: order_id, status badge, purchase timestamp, estimated delivery date.</text>
+    <text x="326" y="430" fill="#64748B" font-size="11">Includes: column sort, search filter, status colour-coding (shipped → amber · processing → blue · delivered → green).</text>
+
+    <!-- Mini table header preview -->
+    <rect x="294" y="444" width="832" height="22" rx="4" fill="#0F172A"/>
+    <text x="310" y="459" fill="#475569" font-size="9" font-weight="700" letter-spacing="0.5">ORDER ID</text>
+    <text x="510" y="459" fill="#475569" font-size="9" font-weight="700" letter-spacing="0.5">STATUS</text>
+    <text x="640" y="459" fill="#475569" font-size="9" font-weight="700" letter-spacing="0.5">PURCHASE DATE</text>
+    <text x="840" y="459" fill="#475569" font-size="9" font-weight="700" letter-spacing="0.5">EST. DELIVERY</text>
+    <!-- Mini data row -->
+    <rect x="294" y="466" width="832" height="18" rx="3" fill="#111827"/>
+    <text x="310" y="479" fill="#64748B" font-size="9" font-family="'Courier New',Courier,monospace">e481f51c…af7</text>
+    <rect x="504" y="469" width="62" height="13" rx="6" fill="#854D0E"/>
+    <text x="512" y="479" fill="#FEF08A" font-size="8" font-weight="600">shipped</text>
+    <text x="640" y="479" fill="#64748B" font-size="9">2017-10-02</text>
+    <text x="840" y="479" fill="#64748B" font-size="9">2017-10-18</text>
+
+    <!-- ══════ PART C2 — METRIC CARD  REJECTED  (482 → 578) ══════ -->
+    <rect x="278" y="488" width="864" height="100" rx="11" fill="#0F1624" stroke="#374151" stroke-width="1.4"/>
+    <rect x="278" y="488" width="4"   height="100" rx="2" fill="#374151"/>
+    <!-- Unchecked box -->
+    <rect x="294" y="506" width="22" height="22" rx="6" fill="#1A2236" stroke="#475569" stroke-width="1.5"/>
+    <!-- Title row -->
+    <text x="326" y="522" fill="#6B7280" font-size="13" font-weight="600">Part c2  —  Metric Card</text>
+    <rect x="482" y="510" width="150" height="20" rx="10" fill="#1F2937"/>
+    <text x="492" y="524" fill="#6B7280" font-size="10" font-weight="600">WIDGET: stats_card</text>
+    <!-- Description -->
+    <text x="326" y="546" fill="#4B5563" font-size="11">Shows count of orders with no carrier assigned. Builder opted to exclude this widget to keep dashboard minimal.</text>
+    <!-- Rejected chip -->
+    <rect x="326" y="558" width="198" height="20" rx="10" fill="#1F0A0A"/>
+    <text x="340" y="572" fill="#EF4444" font-size="10" font-weight="600">✕  Excluded on Apply</text>
+    <!-- Skip reason tag -->
+    <rect x="534" y="558" width="160" height="20" rx="10" fill="#1A1A2E"/>
+    <text x="544" y="572" fill="#6366F1" font-size="10">Builder decision · reversible</text>
+
+    <!-- ══════ PROGRESS BAR  (596 → 622) ══════ -->
+    <text x="278" y="614" fill="#64748B" font-size="11">Review progress</text>
+    <text x="1098" y="614" fill="#60A5FA" font-size="11" font-weight="600" text-anchor="end">2 / 3 selected</text>
+    <rect x="278" y="620" width="864" height="5" rx="3" fill="#1F2937"/>
+    <rect x="278" y="620" width="576" height="5" rx="3" fill="url(#btnBlue)"/>
+    <!-- progress labels -->
+    <text x="278" y="636" fill="#4ADE80" font-size="10">q1 ✓</text>
+    <text x="310" y="636" fill="#4ADE80" font-size="10">c1 ✓</text>
+    <text x="342" y="636" fill="#475569" font-size="10">c2 —</text>
+
+    <!-- ══════ SELECTION SUMMARY  (644 → 700) ══════ -->
+    <rect x="278" y="644" width="864" height="56" rx="9" fill="#0A0F1E" stroke="#1E2D42" stroke-width="1"/>
+    <text x="298" y="670" fill="#94A3B8" font-size="12">Selection:</text>
+    <text x="366" y="670" fill="#4ADE80" font-size="12" font-weight="700">2 parts accepted</text>
+    <text x="494" y="670" fill="#64748B" font-size="12">,</text>
+    <text x="503" y="670" fill="#F87171" font-size="12">1 part rejected</text>
+    <text x="614" y="670" fill="#475569" font-size="12">· Staged to isolated Draft v1.0 only.  No production impact.</text>
+    <text x="298" y="690" fill="#374151" font-size="10">🔒  Sandbox isolation active — production release requires explicit Publish step.</text>
+
+    <!-- ══════ FOOTER ACTIONS  (710 → 762) ══════ -->
+    <line x1="258" y1="712" x2="1162" y2="712" stroke="#1E2D42" stroke-width="1"/>
+
+    <!-- Back -->
+    <rect x="278" y="726" width="154" height="44" rx="9" fill="#1F2937"/>
+    <text x="355" y="753" fill="#94A3B8" font-size="13" text-anchor="middle">← Back</text>
+
+    <!-- Cancel -->
+    <rect x="876" y="726" width="120" height="44" rx="9" fill="#1F2937" stroke="#374151" stroke-width="1"/>
+    <text x="936" y="753" fill="#9CA3AF" font-size="13" text-anchor="middle">Cancel</text>
+
+    <!-- Apply — blue glow CTA -->
+    <rect x="1008" y="726" width="154" height="44" rx="9" fill="url(#btnBlue)" filter="url(#blueGlow)"/>
+    <rect x="1008" y="726" width="154" height="20" rx="9" fill="#FFFFFF" opacity="0.04"/>
+    <text x="1085" y="753" fill="#FFFFFF" font-size="13" font-weight="700" text-anchor="middle">Apply 2 Parts  →</text>
   </g>
+
+  <!-- ─────────── STATUS BAR ─────────── -->
+  <rect x="220" y="930" width="1220" height="30" fill="#0D1526"/>
+  <line x1="220" y1="930" x2="1440" y2="930" stroke="#1F2937" stroke-width="1"/>
+  <circle cx="244" cy="945" r="4" fill="#4ADE80"/>
+  <text x="254" y="949" fill="#475569" font-size="11">Connected · ops_analyst · Draft Mode · v1.0</text>
+  <rect x="1096" y="937" width="126" height="18" rx="9" fill="#1E3A8A" opacity="0.5"/>
+  <text x="1159" y="950" fill="#93C5FD" font-size="11" text-anchor="middle">Reviewing Draft</text>
 </svg>

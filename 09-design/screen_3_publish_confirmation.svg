@@ -1,91 +1,234 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" style="background:#0F172A; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
   <defs>
-    <linearGradient id="publishGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#16A34A"/>
-      <stop offset="100%" stop-color="#15803D"/>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A0F1E"/>
+      <stop offset="100%" stop-color="#0F172A"/>
     </linearGradient>
-    <filter id="modalShadow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="20" stdDeviation="24" flood-color="#000000" flood-opacity="0.7"/>
+    <linearGradient id="btnBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="btnGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22C55E"/>
+      <stop offset="100%" stop-color="#16A34A"/>
+    </linearGradient>
+    <linearGradient id="sideGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0D1526"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="dialogGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1A2540"/>
+      <stop offset="100%" stop-color="#0D1120"/>
+    </linearGradient>
+    <filter id="modalShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="40" stdDeviation="50" flood-color="#000000" flood-opacity="0.9"/>
     </filter>
+    <filter id="greenGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="16" result="blur"/>
+      <feFlood flood-color="#22C55E" flood-opacity="0.25" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="blueGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feFlood flood-color="#3B82F6" flood-opacity="0.3" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1A2036" stroke-width="0.5"/>
+    </pattern>
   </defs>
 
-  <!-- Top App Navigation -->
-  <rect x="0" y="0" width="1200" height="64" fill="#1E293B"/>
-  <line x1="0" y1="64" x2="1200" y2="64" stroke="#334155" stroke-width="1"/>
-  <circle cx="36" cy="32" r="14" fill="#3B82F6"/>
-  <text x="31" y="37" fill="#FFFFFF" font-size="14" font-weight="bold">AI</text>
-  <text x="62" y="38" fill="#F8FAFC" font-size="16" font-weight="600">InternalBuilder Studio — Orders Fulfillment App</text>
-  <rect x="520" y="20" width="130" height="24" rx="12" fill="#1E3A8A"/>
-  <text x="532" y="36" fill="#93C5FD" font-size="12">Draft v1.4 (Unpublished)</text>
-  <rect x="1050" y="16" width="110" height="32" rx="6" fill="#16A34A"/>
-  <text x="1070" y="36" fill="#FFFFFF" font-size="13" font-weight="600">Publish App</text>
+  <!-- Background -->
+  <rect width="1440" height="900" fill="url(#bgGrad)"/>
+  <rect width="1440" height="900" fill="url(#grid)" opacity="0.6"/>
 
-  <!-- Canvas Background Showing Rendered Application -->
-  <rect x="40" y="90" width="1120" height="670" rx="12" fill="#1E293B" stroke="#334155" stroke-width="1"/>
-  
-  <!-- Canvas Header -->
-  <text x="70" y="130" fill="#F8FAFC" font-size="20" font-weight="bold">Orders Pending Delivery</text>
-  <rect x="70" y="148" width="220" height="36" rx="6" fill="#0F172A" stroke="#334155" stroke-width="1"/>
-  <text x="86" y="171" fill="#64748B" font-size="13">🔍 Search by order_id...</text>
-  <rect x="306" y="148" width="130" height="36" rx="6" fill="#0F172A" stroke="#334155" stroke-width="1"/>
-  <text x="322" y="171" fill="#94A3B8" font-size="13">Status: All (2)</text>
+  <!-- ═══ TOP NAVIGATION BAR ═══ -->
+  <rect x="0" y="0" width="1440" height="64" fill="#111827"/>
+  <line x1="0" y1="64" x2="1440" y2="64" stroke="#1F2937" stroke-width="1"/>
+  <rect x="0" y="0" width="220" height="64" fill="#0D1526"/>
+  <circle cx="28" cy="32" r="16" fill="#1E3A8A" opacity="0.5"/>
+  <circle cx="28" cy="32" r="10" fill="#3B82F6"/>
+  <text x="23" y="37" fill="#FFFFFF" font-size="11" font-weight="800">AI</text>
+  <text x="46" y="38" fill="#F1F5F9" font-size="14" font-weight="700">InternalBuilder</text>
+  <line x1="220" y1="0" x2="220" y2="64" stroke="#1F2937" stroke-width="1"/>
 
-  <!-- Rendered Table Rows -->
-  <rect x="70" y="200" width="1060" height="40" fill="#0F172A"/>
-  <text x="90" y="225" fill="#94A3B8" font-size="12" font-weight="600">ORDER ID</text>
-  <text x="360" y="225" fill="#94A3B8" font-size="12" font-weight="600">STATUS</text>
-  <text x="540" y="225" fill="#94A3B8" font-size="12" font-weight="600">PURCHASE TIMESTAMP</text>
-  <text x="820" y="225" fill="#94A3B8" font-size="12" font-weight="600">ESTIMATED DELIVERY</text>
+  <!-- Breadcrumb -->
+  <text x="240" y="35" fill="#475569" font-size="13">Operations Workspace</text>
+  <text x="380" y="35" fill="#334155" font-size="13">/</text>
+  <text x="394" y="35" fill="#94A3B8" font-size="13">Orders Fulfillment App</text>
+  <text x="560" y="35" fill="#334155" font-size="13">/</text>
+  <rect x="574" y="22" width="96" height="22" rx="11" fill="#1E3A8A"/>
+  <text x="586" y="37" fill="#93C5FD" font-size="11" font-weight="600">Draft v1.4</text>
 
-  <!-- Row 1 -->
-  <rect x="70" y="242" width="1060" height="46" fill="#1E293B" stroke="#334155" stroke-width="0.5"/>
-  <text x="90" y="270" fill="#F8FAFC" font-size="13" font-family="Courier, monospace">e481f51cbdc54678b7cc49136f2d6af7</text>
-  <rect x="360" y="254" width="76" height="22" rx="11" fill="#854D0E"/>
-  <text x="372" y="269" fill="#FEF08A" font-size="11" font-weight="600">shipped</text>
-  <text x="540" y="270" fill="#CBD5E1" font-size="13">2017-10-02 10:56:33</text>
-  <text x="820" y="270" fill="#CBD5E1" font-size="13">2017-10-18 00:00:00</text>
+  <!-- Publish button in nav -->
+  <rect x="1080" y="18" width="120" height="30" rx="8" fill="url(#btnGreen)"/>
+  <text x="1140" y="37" fill="#FFFFFF" font-size="13" font-weight="600" text-anchor="middle">Publish App</text>
+  <!-- Nav right -->
+  <rect x="1220" y="20" width="36" height="36" rx="8" fill="#1E293B"/>
+  <text x="1230" y="43" fill="#94A3B8" font-size="17">🔔</text>
+  <circle cx="1330" cy="32" r="18" fill="#1E3A8A"/>
+  <text x="1322" y="37" fill="#93C5FD" font-size="14" font-weight="600">SR</text>
 
-  <!-- Row 2 -->
-  <rect x="70" y="290" width="1060" height="46" fill="#1E293B" stroke="#334155" stroke-width="0.5"/>
-  <text x="90" y="318" fill="#F8FAFC" font-size="13" font-family="Courier, monospace">53cdb2488a108157771d842583c442c2</text>
-  <rect x="360" y="302" width="94" height="22" rx="11" fill="#1E3A8A"/>
-  <text x="372" y="317" fill="#93C5FD" font-size="11" font-weight="600">processing</text>
-  <text x="540" y="318" fill="#CBD5E1" font-size="13">2018-07-24 20:41:37</text>
-  <text x="820" y="318" fill="#CBD5E1" font-size="13">2018-08-13 00:00:00</text>
+  <!-- ═══ LEFT SIDEBAR ═══ -->
+  <rect x="0" y="64" width="220" height="836" fill="url(#sideGrad)"/>
+  <line x1="220" y1="64" x2="220" y2="900" stroke="#1F2937" stroke-width="1"/>
+  <text x="20" y="104" fill="#475569" font-size="10" font-weight="600" letter-spacing="1.2">WORKSPACE</text>
+  <rect x="8" y="112" width="204" height="38" rx="8" fill="#1E3A8A" opacity="0.4"/>
+  <rect x="8" y="112" width="3" height="38" rx="2" fill="#3B82F6"/>
+  <text x="26" y="136" fill="#93C5FD" font-size="13" font-weight="600">✦ App Builder</text>
+  <text x="26" y="172" fill="#64748B" font-size="13">⊞ My Applications</text>
+  <text x="26" y="206" fill="#64748B" font-size="13">⚡ Data Sources</text>
+  <text x="20" y="246" fill="#475569" font-size="10" font-weight="600" letter-spacing="1.2">DRAFT HISTORY</text>
+  <rect x="12" y="254" width="196" height="36" rx="8" fill="#1E3A8A" opacity="0.2"/>
+  <text x="26" y="276" fill="#60A5FA" font-size="12">● v1.4 (current)</text>
+  <text x="26" y="308" fill="#475569" font-size="12">  v1.3</text>
+  <text x="26" y="332" fill="#475569" font-size="12">  v1.2</text>
+  <text x="26" y="356" fill="#475569" font-size="12">  v1.1</text>
+  <rect x="0" y="840" width="220" height="60" fill="#0D1526"/>
+  <line x1="0" y1="840" x2="220" y2="840" stroke="#1F2937" stroke-width="1"/>
+  <circle cx="28" cy="870" r="16" fill="#1E3A8A"/>
+  <text x="20" y="875" fill="#93C5FD" font-size="13" font-weight="600">SR</text>
+  <text x="50" y="867" fill="#E2E8F0" font-size="13" font-weight="500">Subham Rai</text>
+  <text x="50" y="882" fill="#64748B" font-size="11">ops_analyst · Free Plan</text>
 
-  <!-- Dark Backdrop Overlay -->
-  <rect x="0" y="0" width="1200" height="800" fill="#000000" opacity="0.6"/>
+  <!-- ═══ CANVAS — RENDERED APP (behind overlay) ═══ -->
+  <rect x="220" y="64" width="1220" height="836" fill="#0A0F1E"/>
 
-  <!-- Centered Publish Confirmation Dialog -->
+  <!-- App canvas header -->
+  <text x="260" y="110" fill="#F8FAFC" font-size="22" font-weight="700">Orders Pending Delivery</text>
+  <!-- Search + filter -->
+  <rect x="260" y="122" width="240" height="36" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+  <text x="278" y="144" fill="#64748B" font-size="13">🔍  Search by order_id...</text>
+  <rect x="512" y="122" width="140" height="36" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+  <text x="528" y="144" fill="#94A3B8" font-size="13">Status: All ▾</text>
+  <rect x="664" y="122" width="120" height="36" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+  <text x="680" y="144" fill="#94A3B8" font-size="13">Date Range ▾</text>
+
+  <!-- Table header -->
+  <rect x="260" y="172" width="1100" height="40" fill="#111827" rx="6"/>
+  <text x="280" y="197" fill="#94A3B8" font-size="11" font-weight="700" letter-spacing="0.5">ORDER ID</text>
+  <text x="500" y="197" fill="#94A3B8" font-size="11" font-weight="700" letter-spacing="0.5">STATUS</text>
+  <text x="620" y="197" fill="#94A3B8" font-size="11" font-weight="700" letter-spacing="0.5">PURCHASE DATE</text>
+  <text x="820" y="197" fill="#94A3B8" font-size="11" font-weight="700" letter-spacing="0.5">EST. DELIVERY</text>
+  <text x="1040" y="197" fill="#94A3B8" font-size="11" font-weight="700" letter-spacing="0.5">SELLER</text>
+
+  <!-- Table Row 1 -->
+  <rect x="260" y="214" width="1100" height="46" fill="#1E293B" stroke="#1F2937" stroke-width="0.5"/>
+  <text x="280" y="242" fill="#E2E8F0" font-size="12" font-family="'Courier New',Courier,monospace">e481f51cbdc5...af7</text>
+  <rect x="496" y="224" width="82" height="22" rx="11" fill="#854D0E"/>
+  <text x="514" y="239" fill="#FEF08A" font-size="11" font-weight="600">shipped</text>
+  <text x="620" y="242" fill="#CBD5E1" font-size="12">2017-10-02  10:56</text>
+  <text x="820" y="242" fill="#CBD5E1" font-size="12">2017-10-18  00:00</text>
+  <text x="1040" y="242" fill="#94A3B8" font-size="12">Seller #7211</text>
+
+  <!-- Table Row 2 -->
+  <rect x="260" y="262" width="1100" height="46" fill="#111827" stroke="#1F2937" stroke-width="0.5"/>
+  <text x="280" y="290" fill="#E2E8F0" font-size="12" font-family="'Courier New',Courier,monospace">53cdb2488a10...c42</text>
+  <rect x="496" y="272" width="100" height="22" rx="11" fill="#1E3A8A"/>
+  <text x="510" y="287" fill="#93C5FD" font-size="11" font-weight="600">processing</text>
+  <text x="620" y="290" fill="#CBD5E1" font-size="12">2018-07-24  20:41</text>
+  <text x="820" y="290" fill="#CBD5E1" font-size="12">2018-08-13  00:00</text>
+  <text x="1040" y="290" fill="#94A3B8" font-size="12">Seller #4102</text>
+
+  <!-- Table Row 3 -->
+  <rect x="260" y="310" width="1100" height="46" fill="#1E293B" stroke="#1F2937" stroke-width="0.5"/>
+  <text x="280" y="338" fill="#E2E8F0" font-size="12" font-family="'Courier New',Courier,monospace">a9a60eb0ed49...f2a</text>
+  <rect x="496" y="320" width="82" height="22" rx="11" fill="#854D0E"/>
+  <text x="514" y="335" fill="#FEF08A" font-size="11" font-weight="600">shipped</text>
+  <text x="620" y="338" fill="#CBD5E1" font-size="12">2018-02-15  14:33</text>
+  <text x="820" y="338" fill="#CBD5E1" font-size="12">2018-03-04  00:00</text>
+  <text x="1040" y="338" fill="#94A3B8" font-size="12">Seller #9834</text>
+
+  <!-- More rows fading -->
+  <rect x="260" y="358" width="1100" height="46" fill="#111827" stroke="#1F2937" stroke-width="0.5" opacity="0.6"/>
+  <text x="280" y="386" fill="#E2E8F0" font-size="12" font-family="'Courier New',Courier,monospace" opacity="0.6">f2a8d47bc113...d90</text>
+  <rect x="496" y="368" width="100" height="22" rx="11" fill="#1E3A8A" opacity="0.6"/>
+  <text x="510" y="383" fill="#93C5FD" font-size="11" font-weight="600" opacity="0.6">processing</text>
+
+  <rect x="260" y="406" width="1100" height="46" fill="#1E293B" stroke="#1F2937" stroke-width="0.5" opacity="0.3"/>
+  <rect x="260" y="454" width="1100" height="46" fill="#111827" stroke="#1F2937" stroke-width="0.5" opacity="0.15"/>
+
+  <!-- ═══ DARK BACKDROP OVERLAY ═══ -->
+  <rect x="220" y="64" width="1220" height="836" fill="#000000" opacity="0.72"/>
+
+  <!-- ═══ PUBLISH CONFIRMATION DIALOG ═══ -->
   <g filter="url(#modalShadow)">
-    <rect x="340" y="180" width="520" height="420" rx="16" fill="#1E293B" stroke="#475569" stroke-width="1.5"/>
+    <rect x="440" y="120" width="560" height="500" rx="20" fill="url(#dialogGrad)" stroke="#2D3F55" stroke-width="1.5"/>
+    <!-- top accent bar -->
+    <rect x="440" y="120" width="560" height="4" rx="3" fill="url(#btnGreen)" filter="url(#greenGlow)"/>
 
-    <!-- Modal Header -->
-    <circle cx="600" cy="240" r="28" fill="#16A34A" opacity="0.2"/>
-    <circle cx="600" cy="240" r="16" fill="#16A34A"/>
-    <text x="593" y="246" fill="#FFFFFF" font-size="18" font-weight="bold">🚀</text>
+    <!-- Close button -->
+    <rect x="960" y="130" width="32" height="32" rx="8" fill="#1F2937"/>
+    <text x="968" y="150" fill="#64748B" font-size="16">✕</text>
 
-    <text x="600" y="295" fill="#F8FAFC" font-size="20" font-weight="bold" text-anchor="middle">Publish Changes to Production?</text>
-    <text x="600" y="322" fill="#94A3B8" font-size="13" text-anchor="middle">This will create a new live release accessible to your team.</text>
+    <!-- ─── Success icon ─── -->
+    <!-- Outer ring glow -->
+    <circle cx="720" cy="215" r="50" fill="#052e16" opacity="0.5" filter="url(#greenGlow)"/>
+    <circle cx="720" cy="215" r="36" fill="#052e16" stroke="#16A34A" stroke-width="2"/>
+    <circle cx="720" cy="215" r="24" fill="#16A34A"/>
+    <!-- Rocket -->
+    <text x="708" y="224" fill="#FFFFFF" font-size="24">🚀</text>
 
-    <!-- Release Audit Summary Box -->
-    <rect x="375" y="345" width="450" height="130" rx="10" fill="#0F172A" stroke="#334155" stroke-width="1"/>
-    
-    <text x="395" y="375" fill="#CBD5E1" font-size="13" font-weight="600">Release Summary:</text>
-    <text x="395" y="400" fill="#94A3B8" font-size="12">• AI Draft Changes:</text>
-    <text x="535" y="400" fill="#4ADE80" font-size="12" font-weight="600">2 Parts Accepted (Query q1, Table c1)</text>
-    
-    <text x="395" y="424" fill="#94A3B8" font-size="12">• Rejected Proposals:</text>
-    <text x="535" y="424" fill="#F87171" font-size="12">1 Part Discarded (Metric Card c2)</text>
+    <!-- ─── Title ─── -->
+    <text x="720" y="288" fill="#F8FAFC" font-size="22" font-weight="700" text-anchor="middle">Publish Changes to Production?</text>
+    <text x="720" y="314" fill="#94A3B8" font-size="14" text-anchor="middle">This will create a new live release accessible to your team.</text>
+    <text x="720" y="334" fill="#64748B" font-size="13" text-anchor="middle">Workspace: Operations  ·  Role: ops_analyst  ·  Target: production</text>
 
-    <text x="395" y="448" fill="#94A3B8" font-size="12">• Audit Trail ID:</text>
-    <text x="535" y="448" fill="#38BDF8" font-size="12" font-family="Courier, monospace">aud_89312 (Logged to ai_draft_events)</text>
+    <!-- ─── Release Summary Card ─── -->
+    <rect x="470" y="354" width="500" height="156" rx="12" fill="#0A0F1E" stroke="#1F2937" stroke-width="1.5"/>
+    <!-- Card header stripe -->
+    <rect x="470" y="354" width="500" height="40" rx="12" fill="#111827"/>
+    <rect x="470" y="374" width="500" height="20" fill="#111827"/>
+    <text x="500" y="380" fill="#94A3B8" font-size="13" font-weight="700">Release Summary</text>
+    <rect x="852" y="362" width="100" height="22" rx="11" fill="#0c2a5a"/>
+    <text x="882" y="377" fill="#93C5FD" font-size="11" font-weight="600" text-anchor="middle">Draft v1.4</text>
 
-    <!-- Action Buttons -->
-    <rect x="375" y="505" width="160" height="42" rx="8" fill="#334155"/>
-    <text x="430" y="531" fill="#E2E8F0" font-size="14" font-weight="500">Back to Canvas</text>
+    <!-- Summary rows -->
+    <!-- Row 1: Accepted -->
+    <rect x="488" y="404" width="8" height="8" rx="2" fill="#22C55E"/>
+    <text x="504" y="414" fill="#94A3B8" font-size="13">AI Draft Changes:</text>
+    <text x="626" y="414" fill="#4ADE80" font-size="13" font-weight="700">2 Parts Accepted</text>
+    <text x="748" y="414" fill="#64748B" font-size="12">(Query q1 · Table c1)</text>
 
-    <rect x="555" y="505" width="270" height="42" rx="8" fill="url(#publishGrad)"/>
-    <text x="585" y="531" fill="#FFFFFF" font-size="14" font-weight="600">Confirm &amp; Publish App →</text>
+    <!-- Row 2: Rejected -->
+    <rect x="488" y="430" width="8" height="8" rx="2" fill="#EF4444"/>
+    <text x="504" y="440" fill="#94A3B8" font-size="13">Rejected Proposals:</text>
+    <text x="634" y="440" fill="#F87171" font-size="13">1 Part Discarded</text>
+    <text x="752" y="440" fill="#64748B" font-size="12">(Metric Card c2)</text>
+
+    <!-- Row 3: Audit ID -->
+    <rect x="488" y="456" width="8" height="8" rx="2" fill="#60A5FA"/>
+    <text x="504" y="466" fill="#94A3B8" font-size="13">Audit Trail ID:</text>
+    <text x="608" y="466" fill="#38BDF8" font-size="13" font-family="'Courier New',Courier,monospace">aud_89312</text>
+    <text x="700" y="466" fill="#64748B" font-size="12">→ Logged to ai_draft_events</text>
+
+    <!-- Row 4: Timestamp -->
+    <rect x="488" y="482" width="8" height="8" rx="2" fill="#8B5CF6"/>
+    <text x="504" y="492" fill="#94A3B8" font-size="13">Publish timestamp:</text>
+    <text x="638" y="492" fill="#C4B5FD" font-size="13">2024-01-17  13:28:44 UTC</text>
+
+    <!-- ─── Warning notice ─── -->
+    <rect x="470" y="524" width="500" height="32" rx="8" fill="#1C0A00" stroke="#D97706" stroke-width="1"/>
+    <text x="490" y="544" fill="#FCD34D" font-size="12">⚠  This action cannot be undone. All team members will see the new live version.</text>
+
+    <!-- ─── Action buttons ─── -->
+    <!-- Back button -->
+    <rect x="470" y="570" width="180" height="46" rx="10" fill="#1F2937" stroke="#374151" stroke-width="1"/>
+    <text x="560" y="598" fill="#9CA3AF" font-size="14" font-weight="500" text-anchor="middle">← Back to Canvas</text>
+
+    <!-- Confirm &amp; Publish - prominent green -->
+    <rect x="660" y="570" width="310" height="46" rx="10" fill="url(#btnGreen)" filter="url(#greenGlow)"/>
+    <rect x="660" y="570" width="310" height="22" rx="10" fill="#FFFFFF" opacity="0.05"/>
+    <text x="815" y="598" fill="#FFFFFF" font-size="15" font-weight="700" text-anchor="middle">Confirm &amp; Publish App  →</text>
   </g>
+
+  <!-- Status bar -->
+  <rect x="220" y="870" width="1220" height="30" fill="#0D1526"/>
+  <line x1="220" y1="870" x2="1440" y2="870" stroke="#1F2937" stroke-width="1"/>
+  <circle cx="246" cy="885" r="4" fill="#4ADE80"/>
+  <text x="256" y="889" fill="#475569" font-size="11">Connected · ops_analyst · Draft v1.4 (Unpublished) · Olist E-Commerce</text>
+  <rect x="1060" y="875" width="150" height="20" rx="10" fill="#052e16" stroke="#16A34A" stroke-width="1"/>
+  <text x="1135" y="889" fill="#4ADE80" font-size="11" font-weight="600" text-anchor="middle">Ready to Publish</text>
 </svg>
